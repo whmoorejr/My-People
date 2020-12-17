@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<Actions>
+	<SupportURL>http://wiki.indigodomo.com/doku.php?id=plugins:my_people</SupportURL>
+	<Action id="setHomeState" deviceFilter="self">
+		<Name>Set Home State</Name>
+		<CallbackMethod>setHomeState</CallbackMethod>
+		<ConfigUI>
+			<Field type="menu" id="homeStateField">
+				<Label>Home State:</Label>
+				<List>
+					<Option value="Home">Home</Option>
+					<Option value="Away">Away</Option>
+					<Option value="Unsure">Unsure</Option>					
+				</List>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setFirstName" deviceFilter="self">
+		<Name>Set First Name</Name>
+		<CallbackMethod>setFirstName</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="firstNameField">
+				<Label>First Name:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setLastName" deviceFilter="self">
+		<Name>Set Last Name</Name>
+		<CallbackMethod>setLastName</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="lastNameField">
+				<Label>Last Name:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setFriendlyName" deviceFilter="self">
+		<Name>Set Friendly Name</Name>
+		<CallbackMethod>setFriendlyName</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="friendlyNameField">
+				<Label>Friendly Name:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setUserIDNumber" deviceFilter="self">
+		<Name>Set User ID Number</Name>
+		<CallbackMethod>setUserIDNumber</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userIDNumberField">
+				<Label>User ID Number:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setEmail1Address" deviceFilter="self">
+		<Name>Set Email 1 Address</Name>
+		<CallbackMethod>setEmail1Address</CallbackMethod>
+		<ConfigUI>
+			<Field type="button" id="email1AddressField">
+				<Label>Email 1 Address:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>			
+</Actions>

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+
+<Devices>
+	<Device type="custom" id="aPerson">
+		<Name>Person</Name>
+		<ConfigUI>
+			<Field id="NameSpace" type="label">
+				<Label>Use Actions to set custom device states</Label>
+			</Field>
+			<Field id="address" type="textfield">
+				<Label>Enter Person's Main Email Address:</Label>
+			</Field>
+			<Field id="email2Field" type="textfield">
+				<Label>Enter Person's Secondary Email Address:</Label>
+			</Field>
+			<Field id="firstNameField" type="textfield">
+				<Label>Enter Person's First Name:</Label>
+			</Field>
+		</ConfigUI>
+		<States>
+			<State id="firstName">
+				<ValueType>String</ValueType>
+				<TriggerLabel>First Name</TriggerLabel>
+				<ControlPageLabel>First Name</ControlPageLabel>
+			</State>
+			<State id="lastName">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Name</TriggerLabel>
+				<ControlPageLabel>Last Name</ControlPageLabel>
+			</State>
+			<State id="friendlyNameState">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Friendly Name</TriggerLabel>
+				<ControlPageLabel>Friendly Name</ControlPageLabel>
+			</State>
+			<State id="homeState">
+				<ValueType>
+					<List>
+						<Option value="Home">Home</Option>
+						<Option value="Away">Away</Option>
+						<Option value="Unsure">Unsure</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Home State Changed</TriggerLabel>
+				<TriggerLabelPrefix>Home State Changed to</TriggerLabelPrefix>
+				<ControlPageLabel>Home State</ControlPageLabel>
+			</State>
+			<State id="userIDNumber">
+				<ValueType>String</ValueType>
+				<TriggerLabel>User ID Number</TriggerLabel>
+				<ControlPageLabel>User ID Number</ControlPageLabel>
+			</State>	
+			<State id="userPinNumber">
+				<ValueType>String</ValueType>
+				<TriggerLabel>User PIN Number</TriggerLabel>
+				<ControlPageLabel>User PIN Number</ControlPageLabel>
+			</State>
+			<State id="userPassword">
+				<ValueType>String</ValueType>
+				<TriggerLabel>User Password</TriggerLabel>
+				<ControlPageLabel>User Password</ControlPageLabel>
+			</State>	
+			<State id="phone1Number">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone1 Number</TriggerLabel>
+				<ControlPageLabel>Phone1 Number</ControlPageLabel>
+			</State>
+			<State id="phone1SMS">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone1 SMS</TriggerLabel>
+				<ControlPageLabel>Phone1 SMS</ControlPageLabel>
+			</State>	
+			<State id="phone1MMS">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone1 MMS</TriggerLabel>
+				<ControlPageLabel>Phone1 MMS</ControlPageLabel>
+			</State>
+			<State id="phone1IPAddress">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone1 IP Address</TriggerLabel>
+				<ControlPageLabel>Phone1 IP Address</ControlPageLabel>
+			</State>	
+			<State id="phone2Number">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone2 Number</TriggerLabel>
+				<ControlPageLabel>Phone2 Number</ControlPageLabel>
+			</State>
+			<State id="phone2SMS">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone2 SMS</TriggerLabel>
+				<ControlPageLabel>Phone2 SMS</ControlPageLabel>
+			</State>	
+			<State id="phone2MMS">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone2 MMS</TriggerLabel>
+				<ControlPageLabel>Phone2 MMS</ControlPageLabel>
+			</State>
+			<State id="phone2IPAddress">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Phone2 IP Address</TriggerLabel>
+				<ControlPageLabel>Phone2 IP Address</ControlPageLabel>
+			</State>	
+			<State id="email1Address"> 
+				<ValueType>String</ValueType>
+				<TriggerLabel>Email 1 Address</TriggerLabel>
+				<ControlPageLabel>Email 2 Address</ControlPageLabel>
+			</State>	
+			<State id="email2Address"> 
+				<ValueType>String</ValueType>
+				<TriggerLabel>Email 2 Address</TriggerLabel>
+				<ControlPageLabel>Email 2 Address</ControlPageLabel>
+			</State>						
+		</States>
+		<UiDisplayStateId>homeState</UiDisplayStateId>
+	</Device>
+</Devices>

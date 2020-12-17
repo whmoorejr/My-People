@@ -123,3 +123,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+MyPeople.indigoPlugin/.DS_Store
+MyPeople.indigoPlugin/Contents/.DS_Store
