@@ -3,3 +3,15 @@
  A device is a person... you, your wife, your kid, etc.  Basically, any human that you want
  to have a repository of data on.  (phone, email, IP Address, etc.)
  
+ Create a new device...
+ Just one option here, create a "Person".  There is only one field for the configuration,
+ email.  It doesn't have to be email, it can be favorite ice cream flavor; it's whatever you 
+ want to show up on the "Address" column of the Indigo Main UI.
+ Done!... Sort.
+ 
+ Add state information...
+ All device state information is added through actions.  Select the plugin, the device, 
+ and then select the device state you want to edit.  Save and execute the action and you'll 
+ see the state populate under the device's custom state field.
+ 
+ All states are of course available to for trigger by device state changes.

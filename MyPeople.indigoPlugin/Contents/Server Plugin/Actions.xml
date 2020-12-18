@@ -42,6 +42,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
+	
 	<Action id="setUserIDNumber" deviceFilter="self">
 		<Name>Set User ID Number</Name>
 		<CallbackMethod>setUserIDNumber</CallbackMethod>
@@ -50,13 +51,115 @@
 				<Label>User ID Number:</Label>
 			</Field>
 		</ConfigUI>
+	</Action>	
+	<Action id="setUserPinNumber" deviceFilter="self">
+		<Name>Set User PIN Number</Name>
+		<CallbackMethod>setUserPinNumber</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userPinNumberField">
+				<Label>User PIN Number:</Label>
+			</Field>
+		</ConfigUI>
 	</Action>
+	<Action id="setUserPassword" deviceFilter="self">
+		<Name>Set User Password</Name>
+		<CallbackMethod>setUserPassword</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userPasswordField">
+				<Label>User Password:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	
+	<Action id="setPhone1Number" deviceFilter="self">
+		<Name>Set Phone1 Number</Name>
+		<CallbackMethod>setPhone1Number</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone1NumberField">
+				<Label>Phone1 Number:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setPhone1SMS" deviceFilter="self">
+		<Name>Set Phone1 SMS</Name>
+		<CallbackMethod>setPhone1SMS</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone1SMSField">
+				<Label>Phone1 SMS:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>		
+	<Action id="setPhone1MMS" deviceFilter="self">
+		<Name>Set Phone1 MMS</Name>
+		<CallbackMethod>setPhone1MMS</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone1MMSField">
+				<Label>Phone1 MMS:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>		
+	<Action id="setPhone1IPAddress" deviceFilter="self">
+		<Name>Set Phone1 IP Address</Name>
+		<CallbackMethod>setPhone1IPAddress</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone1IPAddressField">
+				<Label>Phone1 IP Address:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	
+	<Action id="setPhone2Number" deviceFilter="self">
+		<Name>Set Phone2 Number</Name>
+		<CallbackMethod>setPhone2Number</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone2NumberField">
+				<Label>Phone2 Number:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setPhone2SMS" deviceFilter="self">
+		<Name>Set Phone2 SMS</Name>
+		<CallbackMethod>setPhone2SMS</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone2SMSField">
+				<Label>Phone2 SMS:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>		
+	<Action id="setPhone2MMS" deviceFilter="self">
+		<Name>Set Phone2 MMS</Name>
+		<CallbackMethod>setPhone2MMS</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone2MMSField">
+				<Label>Phone2 MMS:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>		
+	<Action id="setPhone2IPAddress" deviceFilter="self">
+		<Name>Set Phone2 IP Address</Name>
+		<CallbackMethod>setPhone2IPAddress</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="phone2IPAddressField">
+				<Label>Phone2 IP Address:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>		
+	
 	<Action id="setEmail1Address" deviceFilter="self">
 		<Name>Set Email 1 Address</Name>
 		<CallbackMethod>setEmail1Address</CallbackMethod>
 		<ConfigUI>
-			<Field type="button" id="email1AddressField">
+			<Field type="textfield" id="email1AddressField">
 				<Label>Email 1 Address:</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setEmail2Address" deviceFilter="self">
+		<Name>Set Email 2 Address</Name>
+		<CallbackMethod>setEmail2Address</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="email2AddressField">
+				<Label>Email 2 Address:</Label>
 			</Field>
 		</ConfigUI>
 	</Action>			

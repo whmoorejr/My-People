@@ -10,11 +10,11 @@
 			<Field id="address" type="textfield">
 				<Label>Enter Person's Main Email Address:</Label>
 			</Field>
-			<Field id="email2Field" type="textfield">
-				<Label>Enter Person's Secondary Email Address:</Label>
+			<Field id="NameSpace2" type="label">
+				<Label>This will only be available on Indigo Main Page</Label>
 			</Field>
-			<Field id="firstNameField" type="textfield">
-				<Label>Enter Person's First Name:</Label>
+						<Field id="NameSpace3" type="label">
+				<Label>This will not be saved as a device state.</Label>
 			</Field>
 		</ConfigUI>
 		<States>
@@ -28,7 +28,7 @@
 				<TriggerLabel>Last Name</TriggerLabel>
 				<ControlPageLabel>Last Name</ControlPageLabel>
 			</State>
-			<State id="friendlyNameState">
+			<State id="friendlyName">
 				<ValueType>String</ValueType>
 				<TriggerLabel>Friendly Name</TriggerLabel>
 				<ControlPageLabel>Friendly Name</ControlPageLabel>
