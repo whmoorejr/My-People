@@ -45,6 +45,11 @@
 				<TriggerLabelPrefix>Home State Changed to</TriggerLabelPrefix>
 				<ControlPageLabel>Home State</ControlPageLabel>
 			</State>
+			<State id="userLocation">
+				<ValueType>String</ValueType>
+				<TriggerLabel>User Location</TriggerLabel>
+				<ControlPageLabel>User Location</ControlPageLabel>
+			</State>	
 			<State id="userIDNumber">
 				<ValueType>String</ValueType>
 				<TriggerLabel>User ID Number</TriggerLabel>
@@ -103,7 +108,7 @@
 			<State id="email1Address"> 
 				<ValueType>String</ValueType>
 				<TriggerLabel>Email 1 Address</TriggerLabel>
-				<ControlPageLabel>Email 2 Address</ControlPageLabel>
+				<ControlPageLabel>Email 1 Address</ControlPageLabel>
 			</State>	
 			<State id="email2Address"> 
 				<ValueType>String</ValueType>

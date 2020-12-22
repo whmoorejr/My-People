@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Actions>
-	<SupportURL>http://wiki.indigodomo.com/doku.php?id=plugins:my_people</SupportURL>
+	<SupportURL>https://forums.indigodomo.com/viewforum.php?f=351</SupportURL>
 	<Action id="setHomeState" deviceFilter="self">
 		<Name>Set Home State</Name>
 		<CallbackMethod>setHomeState</CallbackMethod>
@@ -15,6 +15,19 @@
 			</Field>
 		</ConfigUI>
 	</Action>
+	
+	<Action id="setUserLocation" deviceFilter="self">
+		<Name>Set User Location</Name>
+		<CallbackMethod>setUserLocation</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userLocationField">
+				<Label>User Location:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>			
 	<Action id="setFirstName" deviceFilter="self">
 		<Name>Set First Name</Name>
 		<CallbackMethod>setFirstName</CallbackMethod>
@@ -22,14 +35,21 @@
 			<Field type="textfield" id="firstNameField">
 				<Label>First Name:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>
+	
 	<Action id="setLastName" deviceFilter="self">
 		<Name>Set Last Name</Name>
 		<CallbackMethod>setLastName</CallbackMethod>
 		<ConfigUI>
 			<Field type="textfield" id="lastNameField">
 				<Label>Last Name:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
 		</ConfigUI>
 	</Action>
@@ -50,6 +70,10 @@
 			<Field type="textfield" id="userIDNumberField">
 				<Label>User ID Number:</Label>
 			</Field>
+			<Field id="sep1" type="separator" />
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>	
 	<Action id="setUserPinNumber" deviceFilter="self">
@@ -59,6 +83,9 @@
 			<Field type="textfield" id="userPinNumberField">
 				<Label>User PIN Number:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>
 	<Action id="setUserPassword" deviceFilter="self">
@@ -67,6 +94,9 @@
 		<ConfigUI>
 			<Field type="textfield" id="userPasswordField">
 				<Label>User Password:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
 		</ConfigUI>
 	</Action>	
@@ -78,6 +108,9 @@
 			<Field type="textfield" id="phone1NumberField">
 				<Label>Phone1 Number:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>	
 	<Action id="setPhone1SMS" deviceFilter="self">
@@ -86,6 +119,9 @@
 		<ConfigUI>
 			<Field type="textfield" id="phone1SMSField">
 				<Label>Phone1 SMS:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
 		</ConfigUI>
 	</Action>		
@@ -96,6 +132,9 @@
 			<Field type="textfield" id="phone1MMSField">
 				<Label>Phone1 MMS:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>		
 	<Action id="setPhone1IPAddress" deviceFilter="self">
@@ -104,6 +143,9 @@
 		<ConfigUI>
 			<Field type="textfield" id="phone1IPAddressField">
 				<Label>Phone1 IP Address:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
 		</ConfigUI>
 	</Action>	
@@ -115,6 +157,9 @@
 			<Field type="textfield" id="phone2NumberField">
 				<Label>Phone2 Number:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>	
 	<Action id="setPhone2SMS" deviceFilter="self">
@@ -123,6 +168,9 @@
 		<ConfigUI>
 			<Field type="textfield" id="phone2SMSField">
 				<Label>Phone2 SMS:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
 		</ConfigUI>
 	</Action>		
@@ -133,6 +181,9 @@
 			<Field type="textfield" id="phone2MMSField">
 				<Label>Phone2 MMS:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>		
 	<Action id="setPhone2IPAddress" deviceFilter="self">
@@ -141,6 +192,9 @@
 		<ConfigUI>
 			<Field type="textfield" id="phone2IPAddressField">
 				<Label>Phone2 IP Address:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
 		</ConfigUI>
 	</Action>		
@@ -152,6 +206,9 @@
 			<Field type="textfield" id="email1AddressField">
 				<Label>Email 1 Address:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
 	</Action>	
 	<Action id="setEmail2Address" deviceFilter="self">
@@ -161,6 +218,76 @@
 			<Field type="textfield" id="email2AddressField">
 				<Label>Email 2 Address:</Label>
 			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
 		</ConfigUI>
-	</Action>			
+	</Action>
+	<Action id="setAllStatesForPerson" deviceFilter="self">
+		<Name>Set All States</Name>
+		<CallbackMethod>setAllStatesForPerson</CallbackMethod>	
+		<ConfigUI>
+			<Field id="label2" type="label" fontSize="small" fontColor="darkgray">
+				<Label>For Home State, only use "Home" or "Away" or a variableID / DeviceID:statekey with the same value</Label>
+			</Field>
+			<Field type="textfield" id="homeStateAllField">	
+				<Label>Home State:</Label>	
+			</Field>	
+			<Field type="textfield" id="userLocationAllField">	
+				<Label>User Location:</Label>	
+			</Field>
+			<Field type="textfield" id="firstNameAllField">	
+				<Label>First Name:</Label>	
+			</Field>	
+			<Field type="textfield" id="lastNameAllField">	
+				<Label>Last Name:</Label>	
+			</Field>				
+			<Field type="textfield" id="friendlyNameAllField">	
+				<Label>Friendly Name:</Label>	
+			</Field>	
+			<Field type="textfield" id="userIDNumberAllField">	
+				<Label>User ID Number:</Label>	
+			</Field>	
+			<Field type="textfield" id="userPinNumberAllField">	
+				<Label>User Pin Number:</Label>	
+			</Field>	
+			<Field type="textfield" id="userPasswordAllField">	
+				<Label>User Password:</Label>	
+			</Field>	
+			<Field type="textfield" id="phone1NumberAllField">	
+				<Label>Phone1 Number:</Label>	
+			</Field>	
+			<Field type="textfield" id="phone1SMSAllField">	
+				<Label>Phone 1 SMS:</Label>	
+			</Field>	
+			<Field type="textfield" id="phone1MMSAllField">	
+				<Label>Phone 1 MMS:</Label>	
+			</Field>				
+			<Field type="textfield" id="phone1IPAddressAllField">	
+				<Label>Phone 1 IP Address:</Label>	
+			</Field>	
+			<Field type="textfield" id="phone2NumberAllField">	
+				<Label>Phone 2 Number:</Label>	
+			</Field>	
+			<Field type="textfield" id="phone2SMSAllField">	
+				<Label>Phone 2 SMS:</Label>	
+			</Field>	
+			<Field type="textfield" id="phone2MMSAllField">	
+				<Label>Phone 2 MMS:</Label>	
+			</Field>	
+			<Field type="textfield" id="phone2IPAddressAllField">	
+				<Label>Phone 2 IP Address:</Label>	
+			</Field>
+			<Field type="textfield" id="email1AddressAllField">	
+				<Label>Email 1:</Label>	
+			</Field>	
+			<Field type="textfield" id="email2AddressAllField">	
+				<Label>Email 2:</Label>	
+			</Field>
+			<Field id="sep2" type="separator" />
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%% for any of the above fields.</Label>
+			</Field>				
+		</ConfigUI>	
+	</Action>
 </Actions>

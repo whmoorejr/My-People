@@ -15,3 +15,10 @@
  see the state populate under the device's custom state field.
  
  All states are of course available to for trigger by device state changes.
+ 
+ Update Version 1.2.0:
+ Added a "Set all States" action to make the creation of a new "Person" easier.
+ All fields now allow the use of VariableID or Device:StateKey substitutions so you can 
+ update a "Person" device with something dynamic, like using %%d:findfriendsminidevice:address%%
+ for the userLocation state.
+ Or the fingscan state "ipNumber" for phone1IPAddress
