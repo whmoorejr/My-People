@@ -15,7 +15,6 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	
 	<Action id="setUserLocation" deviceFilter="self">
 		<Name>Set User Location</Name>
 		<CallbackMethod>setUserLocation</CallbackMethod>
@@ -290,4 +289,20 @@
 			</Field>				
 		</ConfigUI>	
 	</Action>
+	<Action id="nowShowingFirst">
+		<Name>Now Showing First Record</Name>
+		<CallbackMethod>nowShowingFirst</CallbackMethod>
+	</Action>	
+	<Action id="nowShowingPrevious">
+		<Name>Now Showing Previous Record</Name>
+		<CallbackMethod>nowShowingPrevious</CallbackMethod>
+	</Action>
+	<Action id="nowShowingNext">
+		<Name>Now Showing Next Record</Name>
+		<CallbackMethod>nowShowingNext</CallbackMethod>
+	</Action>	
+	<Action id="nowShowingLast">
+		<Name>Now Showing Last Record</Name>
+		<CallbackMethod>nowShowingLast</CallbackMethod>
+	</Action>	
 </Actions>

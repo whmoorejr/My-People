@@ -22,3 +22,9 @@
  update a "Person" device with something dynamic, like using %%d:findfriendsminidevice:address%%
  for the userLocation state.
  Or the fingscan state "ipNumber" for phone1IPAddress
+ 
+ Update Version 1.2.5
+ The plugin will create a "Now Showing" Device that can be used on a control page.
+ There are 4 new actions... Now Showing First, Previous, Next and Last.
+ The new actions will overwrite the  "Now Showing" device states with your other My People devices.
+ So, you can basically use one page on a control page to basically scroll through all your devices.

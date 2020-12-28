@@ -1,8 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 ####################
-# Copyright (c) 2014, Perceptive Automation, LLC. All rights reserved.
-# http://www.indigodomo.com
+# A special Thank you to all the actual plugin developers on the Indigodomo forum that 
+# assisted me almost daily with every bit of code that I struggled with. (which was most of it.)
+
 
 import indigo
 
@@ -20,14 +21,28 @@ class Plugin(indigo.PluginBase):
 	########################################
 	def startup(self):
 		self.debugLog(u"startup called")
-			
+		
 
+        #### Create Now Showing Device for Control Pages ####
+		if "Now Showing" in indigo.devices:
+			self.aPersonDev = indigo.devices["Now Showing"]
+		else:
+			indigo.server.log(u"Creating Now Showing Device for Control Pages")
+			self.aPersonDev = indigo.device.create(indigo.kProtocol.Plugin, "Now Showing", "A template for control pages, do not delete, do not change address field", deviceTypeId="aPerson")
+			self.aPersonDev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
+			self.aPersonDev.updateStateOnServer(key="homeState", value="Home")
+			
+		self.pluginPrefs["recordRequested"] = 0
+			
+		someVal = self.pluginPrefs["recordRequested"]
+		indigo.server.log("Setting value of Now Showing to " + str(someVal))
+
+			
 	def shutdown(self):
 		self.debugLog(u"shutdown called")
 
- 
 	########################################
-	# Plugin Actions object callbacks (pluginAction is an Indigo plugin action instance)
+	# Plugin Actions object callbacks 
 	######################
 	
 	# ON OFF STATE OF DEVICE ON UI		
@@ -133,7 +148,7 @@ class Plugin(indigo.PluginBase):
 		self.debugLog("Set Email 1 Address: " + str(pluginAction.props.get(u"email1AddressField")) + " Entered.  State email1Address set to: " + substitutedTitle)
 		
 	def setEmail2Address(self, pluginAction, dev):
-		ubstitutedTitle = self.substitute(pluginAction.props.get("email2AddressField", ""))
+		substitutedTitle = self.substitute(pluginAction.props.get("email2AddressField", ""))
 		dev.updateStateOnServer(key="email2Address", value=substitutedTitle)
 		self.debugLog("Set Email 2 Address: " + str(pluginAction.props.get(u"email2AddressField")) + " Entered.  State email2Address set to: " + substitutedTitle)
 	
@@ -231,28 +246,223 @@ class Plugin(indigo.PluginBase):
 	
 		substitutedTitle18 = self.substitute(pluginAction.props.get("email2AddressAllField", ""))
 		self.debugLog("18: " + str(pluginAction.props.get(u"email2AddressAllField")) + " Entered.  " + "State email2Address set to: " + substitutedTitle18)
-		dev.updateStateOnServer(key="email2Address", value=substitutedTitle16)
+		dev.updateStateOnServer(key="email2Address", value=substitutedTitle18)
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	#def setAddEmail(self,valuesDict, typeID, devID):  # <--Updated 
-	#	emailVar = dev.address
-	#	self.debugLog(u"setAddEmail Action called:\n" + str(pluginAction))
-	#	dev.updateStateOnServer(key="email1Address", value=emailVar)
+
+	### Showing Next for control page use
+	def nowShowingNext(self, pluginAction, dev):
+	#	self.dev = indigo.devices["Now Showing"]
+		recordRequested = self.pluginPrefs["recordRequested"]
+		recordRequested = recordRequested + 1
+		personCount = indigo.devices.len(filter="com.whmoorejr.my-people")-1
 		
+		### Verify Requested Record is Within Range
+		if recordRequested > personCount:
+			recordRequested = 0
+			self.pluginPrefs["recordRequested"] = 0
+		elif recordRequested < 0:
+			recordRequested = personCount
+			self.pluginPrefs["recordRequested"] = personCount
+		else:
+			self.pluginPrefs["recordRequested"] = recordRequested
+		
+		recordCount = 0
+		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
+			if recordCount == recordRequested:
+				firstName = dev.states["firstName"]
+				lastName = dev.states["lastName"]
+				friendlyName = dev.states["friendlyName"]
+				homeState = dev.states["homeState"]
+				userLocation = dev.states["userLocation"]
+				userPinNumber = dev.states["userPinNumber"]
+				userPassword = dev.states["userPassword"]
+				phone1Number = dev.states["phone1Number"]
+				phone1SMS = dev.states["phone1SMS"]
+				phone1MMS = dev.states["phone1MMS"]
+				phone1IPAddress = dev.states["phone1IPAddress"]
+				phone2Number = dev.states["phone2Number"]
+				phone2SMS = dev.states["phone2SMS"]
+				phone2MMS = dev.states["phone2MMS"]
+				phone2IPAddress = dev.states["phone2IPAddress"]
+				email1Address = dev.states["email1Address"]
+				email2Address = dev.states["email2Address"]
+				break
+			recordCount += 1
+		
+		indigo.server.log ("Now Showing Next \n " + "Record Requested is #: " + str(recordRequested) + ") " + friendlyName)
+		self.aPersonDev = indigo.devices["Now Showing"]
+		self.aPersonDev.updateStateOnServer(key="firstName", value=firstName)
+		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
+		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
+		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
+		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
+		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
+		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone1MMS", value=phone1MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone1IPAddress", value=phone2IPAddress)	
+		self.aPersonDev.updateStateOnServer(key="phone2Number", value=phone2Number)	
+		self.aPersonDev.updateStateOnServer(key="phone2SMS", value=phone2SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone2MMS", value=phone2MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone2IPAddress", value=phone2IPAddress)			
+		self.aPersonDev.updateStateOnServer(key="email1Address", value=email1Address)
+		self.aPersonDev.updateStateOnServer(key="email2Address", value=email2Address)	
 	
-	###########################
-	# Use to have address field in config box saved as a state also, otherwise set state in action.
-	##########
-	#def deviceStartComm(self, dev):    
-    #  		if dev.pluginId == self.pluginId:
-    #			dev.updateStateOnServer(key="email1Address", value=dev.address)
+	### Showing Previous for control page use
+	def nowShowingPrevious(self, pluginAction, dev):
+		recordRequested = self.pluginPrefs["recordRequested"]
+		recordRequested = recordRequested - 1
+		personCount = indigo.devices.len(filter="com.whmoorejr.my-people")-1
+		
+		### Verify Requested Record is Within Range
+		if recordRequested > personCount:
+			recordRequested = 0
+			self.pluginPrefs["recordRequested"] = 0
+		elif recordRequested < 0:
+			recordRequested = personCount
+			self.pluginPrefs["recordRequested"] = personCount
+		else:
+			self.pluginPrefs["recordRequested"] = recordRequested
+			
+		recordCount = 0
+		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
+			if recordCount == recordRequested:
+				firstName = dev.states["firstName"]
+				lastName = dev.states["lastName"]
+				friendlyName = dev.states["friendlyName"]
+				homeState = dev.states["homeState"]
+				userLocation = dev.states["userLocation"]
+				userPinNumber = dev.states["userPinNumber"]
+				userPassword = dev.states["userPassword"]
+				phone1Number = dev.states["phone1Number"]
+				phone1SMS = dev.states["phone1SMS"]
+				phone1MMS = dev.states["phone1MMS"]
+				phone1IPAddress = dev.states["phone1IPAddress"]
+				phone2Number = dev.states["phone2Number"]
+				phone2SMS = dev.states["phone2SMS"]
+				phone2MMS = dev.states["phone2MMS"]
+				phone2IPAddress = dev.states["phone2IPAddress"]
+				email1Address = dev.states["email1Address"]
+				email2Address = dev.states["email2Address"]
+				break
+			recordCount += 1
+		
+		indigo.server.log ("Now Showing Previous \n " + "Record Requested is #: " + str(recordRequested) + ") " + friendlyName)
+		self.aPersonDev = indigo.devices["Now Showing"]
+		self.aPersonDev.updateStateOnServer(key="firstName", value=firstName)
+		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
+		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
+		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
+		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
+		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
+		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone1MMS", value=phone1MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone1IPAddress", value=phone2IPAddress)	
+		self.aPersonDev.updateStateOnServer(key="phone2Number", value=phone2Number)	
+		self.aPersonDev.updateStateOnServer(key="phone2SMS", value=phone2SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone2MMS", value=phone2MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone2IPAddress", value=phone2IPAddress)			
+		self.aPersonDev.updateStateOnServer(key="email1Address", value=email1Address)
+		self.aPersonDev.updateStateOnServer(key="email2Address", value=email2Address)	
+		
+	### Showing First for control page use	
+	def nowShowingFirst(self, pluginAction, dev):
+		self.pluginPrefs["recordRequested"] = 0
+		recordRequested = 0
+		
+		recordCount = 0
+		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
+			if recordCount == recordRequested:
+				firstName = dev.states["firstName"]
+				lastName = dev.states["lastName"]
+				friendlyName = dev.states["friendlyName"]
+				homeState = dev.states["homeState"]
+				userLocation = dev.states["userLocation"]
+				userPinNumber = dev.states["userPinNumber"]
+				userPassword = dev.states["userPassword"]
+				phone1Number = dev.states["phone1Number"]
+				phone1SMS = dev.states["phone1SMS"]
+				phone1MMS = dev.states["phone1MMS"]
+				phone1IPAddress = dev.states["phone1IPAddress"]
+				phone2Number = dev.states["phone2Number"]
+				phone2SMS = dev.states["phone2SMS"]
+				phone2MMS = dev.states["phone2MMS"]
+				phone2IPAddress = dev.states["phone2IPAddress"]
+				email1Address = dev.states["email1Address"]
+				email2Address = dev.states["email2Address"]
+				break
+			recordCount += 1
+		
+		indigo.server.log ("Now Showing First \n " + "Record Requested is #: " + str(recordRequested) + " : " + friendlyName)
+		self.aPersonDev = indigo.devices["Now Showing"]
+		self.aPersonDev.updateStateOnServer(key="firstName", value=firstName)
+		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
+		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
+		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
+		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
+		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
+		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone1MMS", value=phone1MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone1IPAddress", value=phone2IPAddress)	
+		self.aPersonDev.updateStateOnServer(key="phone2Number", value=phone2Number)	
+		self.aPersonDev.updateStateOnServer(key="phone2SMS", value=phone2SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone2MMS", value=phone2MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone2IPAddress", value=phone2IPAddress)			
+		self.aPersonDev.updateStateOnServer(key="email1Address", value=email1Address)
+		self.aPersonDev.updateStateOnServer(key="email2Address", value=email2Address)	
+	
+	### Showing Last for control page use
+	def nowShowingLast(self, pluginAction, dev):
+		personCount = indigo.devices.len(filter="com.whmoorejr.my-people")-1
+		recordRequested = personCount
+		self.pluginPrefs["recordRequested"] = personCount
+			
+		recordCount = 0
+		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
+			if recordCount == recordRequested:
+				firstName = dev.states["firstName"]
+				lastName = dev.states["lastName"]
+				friendlyName = dev.states["friendlyName"]
+				homeState = dev.states["homeState"]
+				userLocation = dev.states["userLocation"]
+				userPinNumber = dev.states["userPinNumber"]
+				userPassword = dev.states["userPassword"]
+				phone1Number = dev.states["phone1Number"]
+				phone1SMS = dev.states["phone1SMS"]
+				phone1MMS = dev.states["phone1MMS"]
+				phone1IPAddress = dev.states["phone1IPAddress"]
+				phone2Number = dev.states["phone2Number"]
+				phone2SMS = dev.states["phone2SMS"]
+				phone2MMS = dev.states["phone2MMS"]
+				phone2IPAddress = dev.states["phone2IPAddress"]
+				email1Address = dev.states["email1Address"]
+				email2Address = dev.states["email2Address"]
+				break
+			recordCount += 1
+		
+		indigo.server.log ("Now Showing Previous \n " + "Record Requested is #: " + str(recordRequested) + ") " + friendlyName)
+		self.aPersonDev = indigo.devices["Now Showing"]
+		self.aPersonDev.updateStateOnServer(key="firstName", value=firstName)
+		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
+		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
+		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
+		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
+		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
+		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone1MMS", value=phone1MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone1IPAddress", value=phone2IPAddress)	
+		self.aPersonDev.updateStateOnServer(key="phone2Number", value=phone2Number)	
+		self.aPersonDev.updateStateOnServer(key="phone2SMS", value=phone2SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone2MMS", value=phone2MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone2IPAddress", value=phone2IPAddress)			
+		self.aPersonDev.updateStateOnServer(key="email1Address", value=email1Address)
+		self.aPersonDev.updateStateOnServer(key="email2Address", value=email2Address)	
+	
+	
