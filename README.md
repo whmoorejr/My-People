@@ -28,3 +28,5 @@
  There are 4 new actions... Now Showing First, Previous, Next and Last.
  The new actions will overwrite the  "Now Showing" device states with your other My People devices.
  So, you can basically use one page on a control page to basically scroll through all your devices.
+ 
+ Update Version 1.2.6 (Fixed an oops with 1.2.5)
