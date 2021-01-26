@@ -352,4 +352,15 @@
 		<Name>Now Showing Last Record</Name>
 		<CallbackMethod>nowShowingLast</CallbackMethod>
 	</Action>	
+	<Action id="nowShowingSpecific">
+		<Name>Now Showing Specific Record</Name>
+		<CallbackMethod>nowShowingSpecific</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="nowShowingSpecificField">
+				<Label>Record Number</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>Must be a whole number less than or equal to the number of People you have created</Label>
+			</Field>
+		</ConfigUI>	</Action>	
 </Actions>

@@ -103,7 +103,7 @@ class Plugin(indigo.PluginBase):
 		self.debugLog("Set User ID: " + str(pluginAction.props.get(u"userIDNumberField")) + " Entered.  " + "State userIDNumber set to: " + substitutedTitle)
 
 	def setUserPinNumber(self, pluginAction, dev):
-		substitutedTitle = self.substitute(pluginAction.props.get("userPinNumbereField", ""))
+		substitutedTitle = self.substitute(pluginAction.props.get("userPinNumberField", ""))
 		dev.updateStateOnServer(key="userPinNumber", value=substitutedTitle)
 		self.debugLog("Set User PIN Number: " + str(pluginAction.props.get(u"userPinNumberField")) + " Entered.  State userPinNumber set to: " + substitutedTitle)
 		
@@ -524,4 +524,71 @@ class Plugin(indigo.PluginBase):
 		self.aPersonDev.updateStateOnServer(key="email1Address", value=email1Address)
 		self.aPersonDev.updateStateOnServer(key="email2Address", value=email2Address)	
 	
-	
+	### Showing Specific Record for control page use
+	def nowShowingSpecific(self, pluginAction, dev):
+		nowShowingRequest = self.substitute(pluginAction.props.get("nowShowingSpecificField", ""))
+		personCount = indigo.devices.len(filter="com.whmoorejr.my-people")-1
+		nowShowingRequest = int(nowShowingRequest)
+		recordRequested = 0
+		
+		### Verify Request is Within Range
+		if nowShowingRequest > personCount:
+			# self.debugLog("Requested Record Number " + str(nowShowingRequest) + ". Only " + personCount + " Records Available.")
+			self.debugLog("That Didn't Work: Can't get record# " + str(nowShowingRequest) + " out of " + str(personCount) + " records")
+			self.debugLog("Setting NowShowing Back to First Record, Record #0")
+			recordRequested = 0
+			self.pluginPrefs["recordRequested"] = 0
+		else:
+			recordRequested = nowShowingRequest
+			self.pluginPrefs["recordRequested"] = recordRequested
+		
+		recordCount = 0
+		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
+			if recordCount == recordRequested:
+				firstName = dev.states["firstName"]
+				lastName = dev.states["lastName"]
+				friendlyName = dev.states["friendlyName"]
+				homeState = dev.states["homeState"]
+				lastHome = dev.states["lastHome"]
+				lastAway = dev.states["lastAway"]
+				alertsOn = dev.states["alertsOn"]
+				userLocation = dev.states["userLocation"]
+				userPinNumber = dev.states["userPinNumber"]
+				userIDNumber = dev.states["userIDNumber"]
+				userPassword = dev.states["userPassword"]
+				phone1Number = dev.states["phone1Number"]
+				phone1SMS = dev.states["phone1SMS"]
+				phone1MMS = dev.states["phone1MMS"]
+				phone1IPAddress = dev.states["phone1IPAddress"]
+				phone2Number = dev.states["phone2Number"]
+				phone2SMS = dev.states["phone2SMS"]
+				phone2MMS = dev.states["phone2MMS"]
+				phone2IPAddress = dev.states["phone2IPAddress"]
+				email1Address = dev.states["email1Address"]
+				email2Address = dev.states["email2Address"]
+				break
+			recordCount += 1
+		
+		indigo.server.log ("Now Showing #: " + str(recordRequested) + ") " + friendlyName)
+		self.aPersonDev = indigo.devices["Now Showing"]
+		self.aPersonDev.updateStateOnServer(key="firstName", value=firstName)
+		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
+		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
+		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="lastHome", value=lastHome)	
+		self.aPersonDev.updateStateOnServer(key="lastAway", value=lastAway)	
+		self.aPersonDev.updateStateOnServer(key="alertsOn", value=alertsOn)		
+		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
+		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userIDNumber", value=userIDNumber)
+		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
+		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
+		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone1MMS", value=phone1MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone1IPAddress", value=phone2IPAddress)	
+		self.aPersonDev.updateStateOnServer(key="phone2Number", value=phone2Number)	
+		self.aPersonDev.updateStateOnServer(key="phone2SMS", value=phone2SMS)				
+		self.aPersonDev.updateStateOnServer(key="phone2MMS", value=phone2MMS)	
+		self.aPersonDev.updateStateOnServer(key="phone2IPAddress", value=phone2IPAddress)			
+		self.aPersonDev.updateStateOnServer(key="email1Address", value=email1Address)
+		self.aPersonDev.updateStateOnServer(key="email2Address", value=email2Address)	

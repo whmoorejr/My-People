@@ -16,18 +16,16 @@
  
  All states are of course available to for trigger by device state changes.
  
- Update Version 1.2.0:
- Added a "Set all States" action to make the creation of a new "Person" easier.
- All fields now allow the use of VariableID or Device:StateKey substitutions so you can 
+"Set all States" action to make the creation of a new "Person" easier.
+ 
+ All fields (all states) allow the use of VariableID or Device:StateKey substitutions so you can 
  update a "Person" device with something dynamic, like using %%d:findfriendsminidevice:address%%
  for the userLocation state.
  Or the fingscan state "ipNumber" for phone1IPAddress
  
- Update Version 1.2.5
  The plugin will create a "Now Showing" Device that can be used on a control page.
- There are 4 new actions... Now Showing First, Previous, Next and Last.
- The new actions will overwrite the  "Now Showing" device states with your other My People devices.
+ There are 5 "Now Showing" actions... Now Showing First, Previous, Next, Last and Specific (to go to a specific record).
+ The "Now Showing" actions will overwrite the  "Now Showing" device states with your other My People devices.
  So, you can basically use one page on a control page to basically scroll through all your devices.
  
- Update Version 1.2.75 
- Added a few new states (lastHome, lastAway and alertsOn)  Fixed a couple script errors to help with the "Now Showing" display
+ Updates have been made to the help page to include scripting examples
