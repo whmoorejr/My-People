@@ -20,8 +20,6 @@ class Plugin(indigo.PluginBase):
 
 	########################################
 	def startup(self):
-		self.debugLog(u"startup called")
-		
 
         #### Create Now Showing Device for Control Pages ####
 		if "Now Showing" in indigo.devices:
@@ -37,9 +35,11 @@ class Plugin(indigo.PluginBase):
 		someVal = self.pluginPrefs["recordRequested"]
 		indigo.server.log("Setting value of Now Showing to " + str(someVal))
 
-			
 	def shutdown(self):
 		self.debugLog(u"shutdown called")
+		
+	def deviceStartComm(self, dev):			
+		dev.stateListOrDisplayStateIdChanged()   
 
 	########################################
 	# Plugin Actions object callbacks 
@@ -57,6 +57,21 @@ class Plugin(indigo.PluginBase):
 		else:
 			dev.updateStateImageOnServer(indigo.kStateImageSel.SensorTripped)
 		self.debugLog("Set Home State: " + str(pluginAction.props.get(u"homeStateField")) + " Entered.  State homeState set to: " + HomeStateValue)
+		
+	def setLastHome(self, pluginAction, dev):
+		substitutedTitle = self.substitute(pluginAction.props.get("lastHomeField", ""))
+		dev.updateStateOnServer(key="lastHome", value=substitutedTitle)
+		self.debugLog("Set Last Home: " + str(pluginAction.props.get(u"lastHomeField")) + " Entered.  State lastHome set to: " + substitutedTitle)
+		
+	def setLastAway(self, pluginAction, dev):
+		substitutedTitle = self.substitute(pluginAction.props.get("lastAwayField", ""))
+		dev.updateStateOnServer(key="lastAway", value=substitutedTitle)
+		self.debugLog("Set Last Away: " + str(pluginAction.props.get(u"lastAwayField")) + " Entered.  State lastAway set to: " + substitutedTitle)
+
+	def setAlertsOn(self, pluginAction, dev):
+		substitutedTitle = self.substitute(pluginAction.props.get("alertsOnField", ""))
+		dev.updateStateOnServer(key="alertsOn", value=substitutedTitle)
+		self.debugLog("Set Alerts On: " + str(pluginAction.props.get(u"alertsOnField")) + " Entered.  State alertsOn set to: " + substitutedTitle)
 			
 	def setUserLocation(self, pluginAction, dev):
 		substitutedTitle = self.substitute(pluginAction.props.get("userLocationField", ""))
@@ -248,6 +263,18 @@ class Plugin(indigo.PluginBase):
 		self.debugLog("18: " + str(pluginAction.props.get(u"email2AddressAllField")) + " Entered.  " + "State email2Address set to: " + substitutedTitle18)
 		dev.updateStateOnServer(key="email2Address", value=substitutedTitle18)
 		
+		substitutedTitle19 = self.substitute(pluginAction.props.get("lastHomeAllField", ""))
+		self.debugLog("19: " + str(pluginAction.props.get(u"lastHomeAllField")) + " Entered.  " + "State lastHome set to: " + substitutedTitle19)
+		dev.updateStateOnServer(key="lastHome", value=substitutedTitle19)
+
+		substitutedTitle20 = self.substitute(pluginAction.props.get("lastAwayAllField", ""))
+		self.debugLog("20: " + str(pluginAction.props.get(u"lastAwayAllField")) + " Entered.  " + "State lastAway set to: " + substitutedTitle20)
+		dev.updateStateOnServer(key="lastAway", value=substitutedTitle20)
+
+		substitutedTitle21 = self.substitute(pluginAction.props.get("alertsOnAllField", ""))
+		self.debugLog("21: " + str(pluginAction.props.get(u"alertsOnAllField")) + " Entered.  " + "State alertsOn set to: " + substitutedTitle21)
+		dev.updateStateOnServer(key="alertsOn", value=substitutedTitle21)
+		
 
 	### Showing Next for control page use
 	def nowShowingNext(self, pluginAction, dev):
@@ -273,9 +300,13 @@ class Plugin(indigo.PluginBase):
 				lastName = dev.states["lastName"]
 				friendlyName = dev.states["friendlyName"]
 				homeState = dev.states["homeState"]
+				lastHome = dev.states["lastHome"]
+				lastAway = dev.states["lastAway"]
+				alertsOn = dev.states["alertsOn"]
 				userLocation = dev.states["userLocation"]
 				userPinNumber = dev.states["userPinNumber"]
 				userPassword = dev.states["userPassword"]
+				userIDNumber = dev.states["userIDNumber"]
 				phone1Number = dev.states["phone1Number"]
 				phone1SMS = dev.states["phone1SMS"]
 				phone1MMS = dev.states["phone1MMS"]
@@ -295,8 +326,12 @@ class Plugin(indigo.PluginBase):
 		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
 		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
 		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="lastHome", value=lastHome)	
+		self.aPersonDev.updateStateOnServer(key="lastAway", value=lastAway)	
+		self.aPersonDev.updateStateOnServer(key="alertsOn", value=alertsOn)		
 		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
 		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userIDNumber", value=userIDNumber)
 		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
 		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
 		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
@@ -332,8 +367,12 @@ class Plugin(indigo.PluginBase):
 				lastName = dev.states["lastName"]
 				friendlyName = dev.states["friendlyName"]
 				homeState = dev.states["homeState"]
+				lastHome = dev.states["lastHome"]
+				lastAway = dev.states["lastAway"]
+				alertsOn = dev.states["alertsOn"]
 				userLocation = dev.states["userLocation"]
 				userPinNumber = dev.states["userPinNumber"]
+				userIDNumber = dev.states["userIDNumber"]
 				userPassword = dev.states["userPassword"]
 				phone1Number = dev.states["phone1Number"]
 				phone1SMS = dev.states["phone1SMS"]
@@ -354,8 +393,12 @@ class Plugin(indigo.PluginBase):
 		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
 		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
 		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="lastHome", value=lastHome)	
+		self.aPersonDev.updateStateOnServer(key="lastAway", value=lastAway)	
+		self.aPersonDev.updateStateOnServer(key="alertsOn", value=alertsOn)		
 		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
 		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userIDNumber", value=userIDNumber)
 		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
 		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
 		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
@@ -380,8 +423,12 @@ class Plugin(indigo.PluginBase):
 				lastName = dev.states["lastName"]
 				friendlyName = dev.states["friendlyName"]
 				homeState = dev.states["homeState"]
+				lastHome = dev.states["lastHome"]
+				lastAway = dev.states["lastAway"]
+				alertsOn = dev.states["alertsOn"]
 				userLocation = dev.states["userLocation"]
 				userPinNumber = dev.states["userPinNumber"]
+				userIDNumber = dev.states["userIDNumber"]
 				userPassword = dev.states["userPassword"]
 				phone1Number = dev.states["phone1Number"]
 				phone1SMS = dev.states["phone1SMS"]
@@ -402,8 +449,12 @@ class Plugin(indigo.PluginBase):
 		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
 		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
 		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="lastHome", value=lastHome)	
+		self.aPersonDev.updateStateOnServer(key="lastAway", value=lastAway)	
+		self.aPersonDev.updateStateOnServer(key="alertsOn", value=alertsOn)		
 		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
 		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userIDNumber", value=userIDNumber)
 		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
 		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
 		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				
@@ -429,8 +480,12 @@ class Plugin(indigo.PluginBase):
 				lastName = dev.states["lastName"]
 				friendlyName = dev.states["friendlyName"]
 				homeState = dev.states["homeState"]
+				lastHome = dev.states["lastHome"]
+				lastAway = dev.states["lastAway"]
+				alertsOn = dev.states["alertsOn"]
 				userLocation = dev.states["userLocation"]
 				userPinNumber = dev.states["userPinNumber"]
+				userIDNumber = dev.states["userIDNumber"]
 				userPassword = dev.states["userPassword"]
 				phone1Number = dev.states["phone1Number"]
 				phone1SMS = dev.states["phone1SMS"]
@@ -451,8 +506,12 @@ class Plugin(indigo.PluginBase):
 		self.aPersonDev.updateStateOnServer(key="lastName", value=lastName)				
 		self.aPersonDev.updateStateOnServer(key="friendlyName", value=friendlyName)		
 		self.aPersonDev.updateStateOnServer(key="homeState", value=homeState)
+		self.aPersonDev.updateStateOnServer(key="lastHome", value=lastHome)	
+		self.aPersonDev.updateStateOnServer(key="lastAway", value=lastAway)	
+		self.aPersonDev.updateStateOnServer(key="alertsOn", value=alertsOn)		
 		self.aPersonDev.updateStateOnServer(key="userLocation", value=userLocation)	
 		self.aPersonDev.updateStateOnServer(key="userPinNumber", value=userPinNumber)
+		self.aPersonDev.updateStateOnServer(key="userIDNumber", value=userIDNumber)
 		self.aPersonDev.updateStateOnServer(key="userPassword", value=userPassword)	
 		self.aPersonDev.updateStateOnServer(key="phone1Number", value=phone1Number)	
 		self.aPersonDev.updateStateOnServer(key="phone1SMS", value=phone1SMS)				

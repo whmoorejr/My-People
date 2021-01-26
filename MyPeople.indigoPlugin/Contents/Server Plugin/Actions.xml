@@ -15,6 +15,42 @@
 			</Field>
 		</ConfigUI>
 	</Action>
+	<Action id="setLastHome" deviceFilter="self">
+		<Name>Set Last Home</Name>
+		<CallbackMethod>setLastHome</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="lastHomeField">
+				<Label>Last Home:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setLastAway" deviceFilter="self">
+		<Name>Set Last Away</Name>
+		<CallbackMethod>setLastAway</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="lastAwayField">
+				<Label>Last Away:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setAlertsOn" deviceFilter="self">
+		<Name>Set Alerts On</Name>
+		<CallbackMethod>setAlertsOn</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="alertsOnField">
+				<Label>Alerts On:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>		
 	<Action id="setUserLocation" deviceFilter="self">
 		<Name>Set User Location</Name>
 		<CallbackMethod>setUserLocation</CallbackMethod>
@@ -222,6 +258,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
+	
 	<Action id="setAllStatesForPerson" deviceFilter="self">
 		<Name>Set All States</Name>
 		<CallbackMethod>setAllStatesForPerson</CallbackMethod>	
@@ -231,6 +268,15 @@
 			</Field>
 			<Field type="textfield" id="homeStateAllField">	
 				<Label>Home State:</Label>	
+			</Field>	
+			<Field type="textfield" id="lastHomeAllField">	
+				<Label>Last Home:</Label>	
+			</Field>	
+			<Field type="textfield" id="lastAwayAllField">	
+				<Label>Last Away:</Label>	
+			</Field>	
+			<Field type="textfield" id="alertsOnAllField">	
+				<Label>Alerts On:</Label>	
 			</Field>	
 			<Field type="textfield" id="userLocationAllField">	
 				<Label>User Location:</Label>	
@@ -289,6 +335,7 @@
 			</Field>				
 		</ConfigUI>	
 	</Action>
+	
 	<Action id="nowShowingFirst">
 		<Name>Now Showing First Record</Name>
 		<CallbackMethod>nowShowingFirst</CallbackMethod>

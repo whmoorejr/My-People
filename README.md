@@ -29,4 +29,5 @@
  The new actions will overwrite the  "Now Showing" device states with your other My People devices.
  So, you can basically use one page on a control page to basically scroll through all your devices.
  
- Update Version 1.2.6 (Fixed an oops with 1.2.5)
+ Update Version 1.2.75 
+ Added a few new states (lastHome, lastAway and alertsOn)  Fixed a couple script errors to help with the "Now Showing" display

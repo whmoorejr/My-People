@@ -45,6 +45,21 @@
 				<TriggerLabelPrefix>Home State Changed to</TriggerLabelPrefix>
 				<ControlPageLabel>Home State</ControlPageLabel>
 			</State>
+			<State id="lastHome">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Home</TriggerLabel>
+				<ControlPageLabel>Last Home</ControlPageLabel>
+			</State>
+			<State id="lastAway">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Away</TriggerLabel>
+				<ControlPageLabel>Last Away</ControlPageLabel>
+			</State>		
+			<State id="alertsOn">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alerts On</TriggerLabel>
+				<ControlPageLabel>Alerts On</ControlPageLabel>
+			</State>						
 			<State id="userLocation">
 				<ValueType>String</ValueType>
 				<TriggerLabel>User Location</TriggerLabel>
