@@ -24,7 +24,8 @@
  Or the fingscan state "ipNumber" for phone1IPAddress
  
  The plugin will create a "Now Showing" Device that can be used on a control page.
- There are 5 "Now Showing" actions... Now Showing First, Previous, Next, Last and Specific (to go to a specific record).
+ There are 6 "Now Showing" actions... Now Showing First, Previous, Next, Last,  
+ Specific Record (to go to a specific record by record number) and Specific Name (to go to a specific record by name).
  The "Now Showing" actions will overwrite the  "Now Showing" device states with your other My People devices.
  So, you can basically use one page on a control page to basically scroll through all your devices.
  

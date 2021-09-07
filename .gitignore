@@ -125,3 +125,4 @@ dmypy.json
 .pyre/
 MyPeople.indigoPlugin/.DS_Store
 MyPeople.indigoPlugin/Contents/.DS_Store
+.DS_Store

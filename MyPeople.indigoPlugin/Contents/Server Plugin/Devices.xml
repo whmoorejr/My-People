@@ -8,16 +8,18 @@
 				<Label>Use Actions to set custom device states</Label>
 			</Field>
 			<Field id="address" type="textfield">
-				<Label>Enter Person's Main Email Address:</Label>
+				<Label>Any Unique Identifier for the Person Device</Label>
 			</Field>
 			<Field id="NameSpace2" type="label">
-				<Label>This will only be available on Indigo Main Page</Label>
+				<Label>This will only be available on Indigo Main Page GUI</Label>
 			</Field>
 						<Field id="NameSpace3" type="label">
 				<Label>This will not be saved as a device state.</Label>
 			</Field>
 		</ConfigUI>
 		<States>
+		
+		<!-- Identifier States -->
 			<State id="firstName">
 				<ValueType>String</ValueType>
 				<TriggerLabel>First Name</TriggerLabel>
@@ -33,6 +35,8 @@
 				<TriggerLabel>Friendly Name</TriggerLabel>
 				<ControlPageLabel>Friendly Name</ControlPageLabel>
 			</State>
+			
+		<!-- Location States -->
 			<State id="homeState">
 				<ValueType>
 					<List>
@@ -55,16 +59,33 @@
 				<TriggerLabel>Last Away</TriggerLabel>
 				<ControlPageLabel>Last Away</ControlPageLabel>
 			</State>		
-			<State id="alertsOn">
-				<ValueType>String</ValueType>
-				<TriggerLabel>Alerts On</TriggerLabel>
-				<ControlPageLabel>Alerts On</ControlPageLabel>
-			</State>						
 			<State id="userLocation">
 				<ValueType>String</ValueType>
 				<TriggerLabel>User Location</TriggerLabel>
 				<ControlPageLabel>User Location</ControlPageLabel>
 			</State>	
+			<State id="userLatitude">
+				<ValueType>String</ValueType>
+				<TriggerLabel>User Latitude</TriggerLabel>
+				<ControlPageLabel>User Latitude</ControlPageLabel>
+			</State>	
+			<State id="userLongitude">
+				<ValueType>String</ValueType>
+				<TriggerLabel>User Longitude</TriggerLabel>
+				<ControlPageLabel>User Longitude</ControlPageLabel>
+			</State>	
+			<State id="userMap">
+				<ValueType>String</ValueType>
+				<TriggerLabel>User Map</TriggerLabel>
+				<ControlPageLabel>User Map</ControlPageLabel>
+			</State>
+			
+		<!-- User ID States -->
+			<State id="alertsOn">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alerts On</TriggerLabel>
+				<ControlPageLabel>Alerts On</ControlPageLabel>
+			</State>						
 			<State id="userIDNumber">
 				<ValueType>String</ValueType>
 				<TriggerLabel>User ID Number</TriggerLabel>
@@ -80,6 +101,8 @@
 				<TriggerLabel>User Password</TriggerLabel>
 				<ControlPageLabel>User Password</ControlPageLabel>
 			</State>	
+			
+		<!-- Person Contact Information States -->
 			<State id="phone1Number">
 				<ValueType>String</ValueType>
 				<TriggerLabel>Phone1 Number</TriggerLabel>

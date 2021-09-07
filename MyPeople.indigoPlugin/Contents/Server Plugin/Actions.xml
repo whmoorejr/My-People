@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <Actions>
 	<SupportURL>https://forums.indigodomo.com/viewforum.php?f=351</SupportURL>
+	
+<!-- Identifier States -->	
 	<Action id="setHomeState" deviceFilter="self">
 		<Name>Set Home State</Name>
 		<CallbackMethod>setHomeState</CallbackMethod>
@@ -15,55 +17,174 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="setLastHome" deviceFilter="self">
-		<Name>Set Last Home</Name>
-		<CallbackMethod>setLastHome</CallbackMethod>
+	
+<!-- Set Any State from Text, Another Device or Variable -->	
+	<Action id="sep1" />
+	
+	<Action id="setAnyStateFT" uiPath="Set Any State">
+		<Name>From Text To Statekey</Name>
+		<CallbackMethod>setAnyStateFT</CallbackMethod>
 		<ConfigUI>
-			<Field type="textfield" id="lastHomeField">
-				<Label>Last Home:</Label>
+			<Field id="separator1" type="separator" />
+			<Field id="label3" type="label" fontColor="blue"><Label>STEP 1: Choose the Destination Device and State</Label></Field>
+			<Filed id="separator2" type="separator" />
+			<Field type="menu" id="setADeviceField" filter="self" devfaultValue="0" tooltip="">
+				<Label>Select The Person Device You Want To Modify:</Label>
+				<List class="self" filter="self" method="filterDevices" dynamicReload="false"/>
 			</Field>
+			<Field id="buttonConfirmDevice" type="button" tooltip="">
+				<Label>To Populate Available States:</Label><Title>CLICK ME</Title> <CallbackMethod>buttonConfirmDevice</CallbackMethod>
+			</Field>	
+			<Field type="menu" id="setAnyStateField" defaultValue="0" tooltip="">
+				<Label>Select The State You Want To Modify:</Label>
+				<List class="self" filter="new" method="filterDevStates" dynamicReload="true"/>
+			</Field>
+			<Field id="separator3" type="separator" />
+			<Field id="label4" type="label" fontColor="blue"><Label>STEP 2: Enter the new value for your destination</Label></Field>
+			<Filed id="separator4" type="separator" />
+			<Field type="textfield" id="newStateValueField"><Label>Enter New Value:</Label></Field>
 			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
-				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+				<Label>You can insert text, a variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
-		</ConfigUI>
+			<Field id="separator" type="separator" />
+			<Field id="label2" type="label" fontColor="blue"><Label>STEP 3: Update Now, Save and Execute, or Both</Label></Field>
+			<Field id="buttonConfirmNewValue" type="button" tooltip="">
+				<Label>To Make The Change Now:</Label><Title>UPDATE NOW</Title> <CallbackMethod>buttonConfirmNewValue</CallbackMethod>
+			</Field>	
+		</ConfigUI>	
+	</Action>
+	
+	<Action id="setAnyStateFS" uiPath="Set Any State">
+		<Name>From Statekey To Statekey</Name>
+		<CallbackMethod>setAnyStateFS</CallbackMethod>
+		<ConfigUI>
+			<Field id="separator5" type="separator" />
+			<Field id="label6" type="label" fontColor="blue"><Label>STEP 1: Choose the Destination Device and State</Label></Field>
+			<Filed id="separator6" type="separator" />
+			<Field type="menu" id="setADeviceFieldFS" filter="self" devfaultValue="0" tooltip="">
+				<Label>Select The Person Device You Want To Modify:</Label>
+				<List class="self" filter="self" method="filterDevicesFS" dynamicReload="false"/>
+			</Field>
+			<Field id="buttonConfirmDeviceFS" type="button" tooltip="">
+				<Label>To Populate Available States:</Label><Title>CLICK ME</Title> <CallbackMethod>buttonConfirmDeviceFS</CallbackMethod>
+			</Field>	
+			<Field type="menu" id="setAnyStateFieldFS" defaultValue="0" tooltip="">
+				<Label>Select The State You Want To Modify:</Label>
+				<List class="self" filter="new" method="filterDevStatesFS" dynamicReload="true"/>
+			</Field>
+			<Field id="separator7" type="separator" />
+			<Field id="label8" type="label" fontColor="blue"><Label>STEP 2: Pick the Source Device and State</Label></Field>
+			<Filed id="separator8" type="separator" />
+			<Field type="menu" id="setSourceDeviceField" filter="self" devfaultValue="0" tooltip="">
+				<Label>Select The Source Device:</Label>
+				<List class="self" filter="self" method="filterAllDevices" dynamicReload="false"/>
+			</Field>
+			<Field id="buttonConfirmSourceFS" type="button" tooltip="">
+				<Label>To Populate Source Device States:</Label><Title>CLICK ME</Title> <CallbackMethod>buttonConfirmDeviceFS</CallbackMethod>
+			</Field>	
+			<Field type="menu" id="setSourceStateField" defaultValue="0" tooltip="">
+				<Label>Select the State You Want To Use</Label>
+				<List class="self" filter="new" method="filterSourceDevStates" dynamicReload="true"/>
+			</Field>
+			<Field id="separator9" type="separator" />
+			<Field id="label9" type="label" fontColor="blue"><Label>STEP 3: Update Now, Save and Execute, or Both</Label></Field>
+			<Field id="buttonConfirmNewValueFS" type="button" tooltip="">
+				<Label>To Make Change Now:</Label><Title>UPDATE NOW</Title> <CallbackMethod>buttonConfirmNewValueFS</CallbackMethod>
+			</Field>	
+		</ConfigUI>	
+	</Action>
+	
+	<Action id="setAnyStateFV" uiPath="Set Any State">
+		<Name>From Variable To Statekey</Name>
+		<CallbackMethod>setAnyStateFV</CallbackMethod>
+		<ConfigUI>
+			<Field id="separator10" type="separator" />
+			<Field id="label11" type="label" fontColor="blue"><Label>STEP 1: Choose the Destination Device and State</Label></Field>
+			<Filed id="separator11" type="separator" />
+			<Field type="menu" id="setADeviceFieldFV" filter="self" devfaultValue="0" tooltip="">
+				<Label>Select The Person Device You Want To Modify:</Label>
+				<List class="self" filter="self" method="filterDevicesFV" dynamicReload="false"/>
+			</Field>
+			<Field id="buttonConfirmDeviceFV" type="button" tooltip="">
+				<Label>To Populate Available States:</Label><Title>CLICK ME</Title> <CallbackMethod>buttonConfirmDeviceFV</CallbackMethod>
+			</Field>	
+			<Field type="menu" id="setAnyStateFieldFV" defaultValue="0" tooltip="">
+				<Label>Select The State You Want To Modify:</Label>
+				<List class="self" filter="new" method="filterDevStatesFV" dynamicReload="true"/>
+			</Field>
+			<Field id="separator12" type="separator" />
+			<Field id="label13" type="label" fontColor="blue"><Label>STEP 2: Pick the Source Variable</Label></Field>
+			<Filed id="separator13" type="separator" />
+			<Field type="menu" id="setSourceVariableField" filter="self" devfaultValue="0" tooltip="">
+				<Label>Select The Source Variable:</Label>
+				<List class="self" filter="self" method="filterAllVariables" dynamicReload="true"/>
+			</Field>
+			
+			<Field id="separator14" type="separator" />
+			<Field id="label14" type="label" fontColor="blue"><Label>STEP 3: Update Now, Save and Execute, or Both</Label></Field>
+			<Field id="buttonConfirmNewValueFV" type="button" tooltip="">
+				<Label>To Make Change Now:</Label><Title>UPDATE NOW</Title> <CallbackMethod>buttonConfirmNewValueFV</CallbackMethod>
+			</Field>	
+		</ConfigUI>	
+	</Action>
+	
+	
+	
+	
+<!-- Now Showing Actions -->			
+	<Action id="sep2" />	
+
+	<Action id="nowShowingFirst" uiPath="Now Showing Actions">
+		<Name>First Person</Name>
+		<CallbackMethod>nowShowingFirst</CallbackMethod>
 	</Action>	
-	<Action id="setLastAway" deviceFilter="self">
-		<Name>Set Last Away</Name>
-		<CallbackMethod>setLastAway</CallbackMethod>
+	
+	<Action id="nowShowingPrevious" uiPath="Now Showing Actions">
+		<Name>Previous Person</Name>
+		<CallbackMethod>nowShowingPrevious</CallbackMethod>
+	</Action>
+	
+	<Action id="nowShowingNext" uiPath="Now Showing Actions">
+		<Name>Next Person</Name>
+		<CallbackMethod>nowShowingNext</CallbackMethod>
+	</Action>
+		
+	<Action id="nowShowingLast" uiPath="Now Showing Actions">
+		<Name>Last Person</Name>
+		<CallbackMethod>nowShowingLast</CallbackMethod>
+	</Action>
+		
+	<Action id="nowShowingSpecific" uiPath="Now Showing Actions">
+		<Name>Specific Person</Name>
+		<CallbackMethod>nowShowingSpecific</CallbackMethod>
 		<ConfigUI>
-			<Field type="textfield" id="lastAwayField">
-				<Label>Last Away:</Label>
-			</Field>
-			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
-				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			<Field id="separator15" type="separator" />
+			<Field id="label16" type="label" fontColor="blue"><Label>Choose The Person Device To Display as Now Showing</Label></Field>
+			<Filed id="separator16" type="separator" />
+			<Field type="menu" id="setRequestedDevice" filter="self" devfaultValue="0" tooltip="">
+				<List class="self" filter="self" method="filterDevicesNS" dynamicReload="false"/>
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="setAlertsOn" deviceFilter="self">
-		<Name>Set Alerts On</Name>
-		<CallbackMethod>setAlertsOn</CallbackMethod>
+		
+	<Action id="nowShowingSpecificRecord" uiPath="Now Showing Actions">
+		<Name>Specific Record</Name>
+		<CallbackMethod>nowShowingSpecificRecord</CallbackMethod>
 		<ConfigUI>
-			<Field type="textfield" id="alertsOnField">
-				<Label>Alerts On:</Label>
+			<Field type="textfield" id="nowShowingSpecificRecordField">
+				<Label>Record Number</Label>
 			</Field>
 			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
-				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+				<Label>Must be a whole number less than or equal to the number of People you have created</Label>
 			</Field>
-		</ConfigUI>
-	</Action>		
-	<Action id="setUserLocation" deviceFilter="self">
-		<Name>Set User Location</Name>
-		<CallbackMethod>setUserLocation</CallbackMethod>
-		<ConfigUI>
-			<Field type="textfield" id="userLocationField">
-				<Label>User Location:</Label>
-			</Field>
-			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
-				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
-			</Field>
-		</ConfigUI>
-	</Action>			
-	<Action id="setFirstName" deviceFilter="self">
+		</ConfigUI>	
+		</Action>			
+	
+	
+<!-- Legacy Inputs For Scripting-->			
+	<Action id="sep3" />	
+
+	<Action id="setFirstName" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set First Name</Name>
 		<CallbackMethod>setFirstName</CallbackMethod>
 		<ConfigUI>
@@ -75,8 +196,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	
-	<Action id="setLastName" deviceFilter="self">
+	<Action id="setLastName" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Last Name</Name>
 		<CallbackMethod>setLastName</CallbackMethod>
 		<ConfigUI>
@@ -88,7 +208,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="setFriendlyName" deviceFilter="self">
+	<Action id="setFriendlyName" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Friendly Name</Name>
 		<CallbackMethod>setFriendlyName</CallbackMethod>
 		<ConfigUI>
@@ -98,7 +218,92 @@
 		</ConfigUI>
 	</Action>
 	
-	<Action id="setUserIDNumber" deviceFilter="self">
+	<Action id="setLastHome" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
+		<Name>Set Last Home</Name>
+		<CallbackMethod>setLastHome</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="lastHomeField">
+				<Label>Last Home:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setLastAway" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
+		<Name>Set Last Away</Name>
+		<CallbackMethod>setLastAway</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="lastAwayField">
+				<Label>Last Away:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setUserLocation" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
+		<Name>Set User Location</Name>
+		<CallbackMethod>setUserLocation</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userLocationField">
+				<Label>User Location:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setUserLatitude" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
+		<Name>Set User Latitude</Name>
+		<CallbackMethod>setUserLatitude</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userLatitudeField">
+				<Label>User Latitude:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setUserLongitude" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
+		<Name>Set User Longitude</Name>
+		<CallbackMethod>setUserLongitude</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userLongitudeField">
+				<Label>User Longitude:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="setUserMap" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
+		<Name>Set User Map</Name>
+		<CallbackMethod>setUserMap</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="userMapField">
+				<Label>User Map:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	
+	<Action id="setAlertsOn" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
+		<Name>Set Alerts On</Name>
+		<CallbackMethod>setAlertsOn</CallbackMethod>
+		<ConfigUI>
+			<Field type="textfield" id="alertsOnField">
+				<Label>Alerts On:</Label>
+			</Field>
+			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
+				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
+			</Field>
+		</ConfigUI>
+	</Action>	
+	<Action id="setUserIDNumber" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set User ID Number</Name>
 		<CallbackMethod>setUserIDNumber</CallbackMethod>
 		<ConfigUI>
@@ -111,7 +316,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>	
-	<Action id="setUserPinNumber" deviceFilter="self">
+	<Action id="setUserPinNumber" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set User PIN Number</Name>
 		<CallbackMethod>setUserPinNumber</CallbackMethod>
 		<ConfigUI>
@@ -123,7 +328,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="setUserPassword" deviceFilter="self">
+	<Action id="setUserPassword" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set User Password</Name>
 		<CallbackMethod>setUserPassword</CallbackMethod>
 		<ConfigUI>
@@ -136,7 +341,7 @@
 		</ConfigUI>
 	</Action>	
 	
-	<Action id="setPhone1Number" deviceFilter="self">
+	<Action id="setPhone1Number" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone1 Number</Name>
 		<CallbackMethod>setPhone1Number</CallbackMethod>
 		<ConfigUI>
@@ -148,7 +353,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>	
-	<Action id="setPhone1SMS" deviceFilter="self">
+	<Action id="setPhone1SMS" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone1 SMS</Name>
 		<CallbackMethod>setPhone1SMS</CallbackMethod>
 		<ConfigUI>
@@ -160,7 +365,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>		
-	<Action id="setPhone1MMS" deviceFilter="self">
+	<Action id="setPhone1MMS" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone1 MMS</Name>
 		<CallbackMethod>setPhone1MMS</CallbackMethod>
 		<ConfigUI>
@@ -172,7 +377,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>		
-	<Action id="setPhone1IPAddress" deviceFilter="self">
+	<Action id="setPhone1IPAddress" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone1 IP Address</Name>
 		<CallbackMethod>setPhone1IPAddress</CallbackMethod>
 		<ConfigUI>
@@ -185,7 +390,7 @@
 		</ConfigUI>
 	</Action>	
 	
-	<Action id="setPhone2Number" deviceFilter="self">
+	<Action id="setPhone2Number" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone2 Number</Name>
 		<CallbackMethod>setPhone2Number</CallbackMethod>
 		<ConfigUI>
@@ -197,7 +402,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>	
-	<Action id="setPhone2SMS" deviceFilter="self">
+	<Action id="setPhone2SMS" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone2 SMS</Name>
 		<CallbackMethod>setPhone2SMS</CallbackMethod>
 		<ConfigUI>
@@ -209,7 +414,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>		
-	<Action id="setPhone2MMS" deviceFilter="self">
+	<Action id="setPhone2MMS" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone2 MMS</Name>
 		<CallbackMethod>setPhone2MMS</CallbackMethod>
 		<ConfigUI>
@@ -221,7 +426,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>		
-	<Action id="setPhone2IPAddress" deviceFilter="self">
+	<Action id="setPhone2IPAddress" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Phone2 IP Address</Name>
 		<CallbackMethod>setPhone2IPAddress</CallbackMethod>
 		<ConfigUI>
@@ -234,7 +439,7 @@
 		</ConfigUI>
 	</Action>		
 	
-	<Action id="setEmail1Address" deviceFilter="self">
+	<Action id="setEmail1Address" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Email 1 Address</Name>
 		<CallbackMethod>setEmail1Address</CallbackMethod>
 		<ConfigUI>
@@ -246,7 +451,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>	
-	<Action id="setEmail2Address" deviceFilter="self">
+	<Action id="setEmail2Address" deviceFilter="self" uiPath="Legacy Inputs for Scripting">
 		<Name>Set Email 2 Address</Name>
 		<CallbackMethod>setEmail2Address</CallbackMethod>
 		<ConfigUI>
@@ -257,110 +462,8 @@
 				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%%</Label>
 			</Field>
 		</ConfigUI>
-	</Action>
+	</Action>	
 	
-	<Action id="setAllStatesForPerson" deviceFilter="self">
-		<Name>Set All States</Name>
-		<CallbackMethod>setAllStatesForPerson</CallbackMethod>	
-		<ConfigUI>
-			<Field id="label2" type="label" fontSize="small" fontColor="darkgray">
-				<Label>For Home State, only use "Home" or "Away" or a variableID / DeviceID:statekey with the same value</Label>
-			</Field>
-			<Field type="textfield" id="homeStateAllField">	
-				<Label>Home State:</Label>	
-			</Field>	
-			<Field type="textfield" id="lastHomeAllField">	
-				<Label>Last Home:</Label>	
-			</Field>	
-			<Field type="textfield" id="lastAwayAllField">	
-				<Label>Last Away:</Label>	
-			</Field>	
-			<Field type="textfield" id="alertsOnAllField">	
-				<Label>Alerts On:</Label>	
-			</Field>	
-			<Field type="textfield" id="userLocationAllField">	
-				<Label>User Location:</Label>	
-			</Field>
-			<Field type="textfield" id="firstNameAllField">	
-				<Label>First Name:</Label>	
-			</Field>	
-			<Field type="textfield" id="lastNameAllField">	
-				<Label>Last Name:</Label>	
-			</Field>				
-			<Field type="textfield" id="friendlyNameAllField">	
-				<Label>Friendly Name:</Label>	
-			</Field>	
-			<Field type="textfield" id="userIDNumberAllField">	
-				<Label>User ID Number:</Label>	
-			</Field>	
-			<Field type="textfield" id="userPinNumberAllField">	
-				<Label>User Pin Number:</Label>	
-			</Field>	
-			<Field type="textfield" id="userPasswordAllField">	
-				<Label>User Password:</Label>	
-			</Field>	
-			<Field type="textfield" id="phone1NumberAllField">	
-				<Label>Phone1 Number:</Label>	
-			</Field>	
-			<Field type="textfield" id="phone1SMSAllField">	
-				<Label>Phone 1 SMS:</Label>	
-			</Field>	
-			<Field type="textfield" id="phone1MMSAllField">	
-				<Label>Phone 1 MMS:</Label>	
-			</Field>				
-			<Field type="textfield" id="phone1IPAddressAllField">	
-				<Label>Phone 1 IP Address:</Label>	
-			</Field>	
-			<Field type="textfield" id="phone2NumberAllField">	
-				<Label>Phone 2 Number:</Label>	
-			</Field>	
-			<Field type="textfield" id="phone2SMSAllField">	
-				<Label>Phone 2 SMS:</Label>	
-			</Field>	
-			<Field type="textfield" id="phone2MMSAllField">	
-				<Label>Phone 2 MMS:</Label>	
-			</Field>	
-			<Field type="textfield" id="phone2IPAddressAllField">	
-				<Label>Phone 2 IP Address:</Label>	
-			</Field>
-			<Field type="textfield" id="email1AddressAllField">	
-				<Label>Email 1:</Label>	
-			</Field>	
-			<Field type="textfield" id="email2AddressAllField">	
-				<Label>Email 2:</Label>	
-			</Field>
-			<Field id="sep2" type="separator" />
-			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
-				<Label>You can insert variable substitution %%v:VARIABLEID%% or device state %%d:DEVICEID:STATEKEY%% for any of the above fields.</Label>
-			</Field>				
-		</ConfigUI>	
-	</Action>
+
 	
-	<Action id="nowShowingFirst">
-		<Name>Now Showing First Record</Name>
-		<CallbackMethod>nowShowingFirst</CallbackMethod>
-	</Action>	
-	<Action id="nowShowingPrevious">
-		<Name>Now Showing Previous Record</Name>
-		<CallbackMethod>nowShowingPrevious</CallbackMethod>
-	</Action>
-	<Action id="nowShowingNext">
-		<Name>Now Showing Next Record</Name>
-		<CallbackMethod>nowShowingNext</CallbackMethod>
-	</Action>	
-	<Action id="nowShowingLast">
-		<Name>Now Showing Last Record</Name>
-		<CallbackMethod>nowShowingLast</CallbackMethod>
-	</Action>	
-	<Action id="nowShowingSpecific">
-		<Name>Now Showing Specific Record</Name>
-		<CallbackMethod>nowShowingSpecific</CallbackMethod>
-		<ConfigUI>
-			<Field type="textfield" id="nowShowingSpecificField">
-				<Label>Record Number</Label>
-			</Field>
-			<Field id="label" type="label" fontSize="small" fontColor="darkgray">
-				<Label>Must be a whole number less than or equal to the number of People you have created</Label>
-			</Field>
-		</ConfigUI>	</Action>	
 </Actions>
