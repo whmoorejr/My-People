@@ -30,3 +30,4 @@
  So, you can basically use one page on a control page to basically scroll through all your devices.
  
  Updates have been made to the help page to include scripting examples
+ Update 2022-05-18: Updated logging feature to change logging levels

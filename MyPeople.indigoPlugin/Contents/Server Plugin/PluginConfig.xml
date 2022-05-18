@@ -23,9 +23,24 @@
     </Field>
     	
  	<Field id="space6" type="Label"><Label></Label></Field> 
-    <Field id="sep3" type="separator"/>	   
+    <Field id="sep3" type="separator"/>	
+    
+    <Field id="logLevel" type="menu" defaultValue="20">
+    	<Label>Event Logging Level:</Label>
+    	<List>
+    		<Option value="5" >Detailed Debugging Messages</Option>
+    		<Option value="10">Debugging Messages</Option>
+    		<Option value="20">Informational Messages</Option>
+    		<Option value="30">Warning Messages</Option>
+    		<Option value="40">Error Messages</Option>
+    		<Option value="50">Critical Errors Only</Option>
+    	</List>
+    </Field>
+    
+    <Field id="space7" type="Label"><Label></Label></Field> 
+    <Field id="sep4" type="separator"/>	  
  
-  	<Field id="space7" type="Label" fontColor="blue">
+  	<Field id="space8" type="Label" fontColor="blue">
   		<Label>Nothing more to configure, enjoy the plugin!</Label>
   	</Field>
   	
