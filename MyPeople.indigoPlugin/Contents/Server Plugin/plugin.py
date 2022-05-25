@@ -27,7 +27,7 @@ class Plugin(indigo.PluginBase):
 	########################################
 	def startup(self):
 
-        #### Create Now Showing Device for Control Pages ####
+		#### Create Now Showing Device for Control Pages ####
 		if "Now Showing" in indigo.devices:
 			self.aPersonDev = indigo.devices["Now Showing"]
 		else:
@@ -38,7 +38,7 @@ class Plugin(indigo.PluginBase):
 
 			newProps = aPersonDev.pluginProps  #Use pluginProps to save the value before substitution
 			newProps["meta_homeState"] = "Home"
-		    	self.aPersonDev.replacePluginPropsOnServer(newProps)
+			self.aPersonDev.replacePluginPropsOnServer(newProps)
 			
 		self.pluginPrefs["recordRequested"] = 0
 		self.pluginPrefs["pollFreq"] = 180	
@@ -169,7 +169,7 @@ class Plugin(indigo.PluginBase):
 		dev.updateStateOnServer(key="homeState", value=HomeStateValue)
 		newProps = dev.pluginProps  #Use pluginProps to save the value before substitution
 		thisPerson = dev.name	
-		    	
+
 		if HomeStateValue == "Home":
 			dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
 			newProps["meta_homeState"] = "Home"
@@ -213,7 +213,7 @@ class Plugin(indigo.PluginBase):
 		xList =[]
 		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
 			if dev.name != "Now Showing":
-				xList.append(( unicode(dev.id),dev.name))
+				xList.append(( str(dev.id),dev.name))
 		return xList
 		
 	def buttonConfirmDevice(self, valuesDict, typeID, devId):
@@ -230,7 +230,7 @@ class Plugin(indigo.PluginBase):
 				if state!="homeState.Home": 
 					if state!="homeState.Away":
 						if state!="homeState.Unknown":
-							xList.append((state,state+"   ; currentV: "+unicode(dev.states[state]) ))
+							xList.append((state,state+"   ; currentV: "+str(dev.states[state]) ))
 		return xList	
 		
 	def buttonConfirmNewValue(self, valuesDict, typeId, devId): 
@@ -279,7 +279,7 @@ class Plugin(indigo.PluginBase):
 		xList =[]
 		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
 			if dev.name != "Now Showing":
-				xList.append(( unicode(dev.id),dev.name))
+				xList.append(( str(dev.id),dev.name))
 		return xList
 		
 	def buttonConfirmDeviceFS(self, valuesDict, typeID, devId):
@@ -296,7 +296,7 @@ class Plugin(indigo.PluginBase):
 				if state!="homeState.Home": 
 					if state!="hometate.Away":
 						if state!="homeState.Unsure":
-							xList.append((state,state+"   ; currentV: "+unicode(dev.states[state]) ))
+							xList.append((state,state+"   ; currentV: "+str(dev.states[state]) ))
 		#xList.append(("0","==== off, do not use ===="))
 		return xList	
 	
@@ -304,7 +304,7 @@ class Plugin(indigo.PluginBase):
 		xList =[]
 		for dev in indigo.devices:
 			if dev.name !="Now Showing":
-				xList.append(( unicode(dev.id),dev.name))
+				xList.append(( str(dev.id),dev.name))
 		return xList
 	
 	def buttonConfirmSourceFS(self, valuesDict, typeID, devID):
@@ -317,7 +317,7 @@ class Plugin(indigo.PluginBase):
 		if valuesDict["setSourceDeviceField"] in ["0",""]: return [("0","")]
 		dev = indigo.devices[int(valuesDict["setSourceDeviceField"])]
 		for state in dev.states:
-			xList.append((state,state+"   ; currentV: "+unicode(dev.states[state]) ))
+			xList.append((state,state+"   ; currentV: "+str(dev.states[state]) ))
 		return xList
 			
 	def buttonConfirmNewValueFS(self, valuesDict, typeId, devId): 
@@ -369,7 +369,7 @@ class Plugin(indigo.PluginBase):
 		xList =[]
 		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
 			if dev.name != "Now Showing":
-				xList.append(( unicode(dev.id),dev.name))
+				xList.append(( str(dev.id),dev.name))
 		return xList
 		
 	def buttonConfirmDeviceFV(self, valuesDict, typeID, devId):
@@ -386,13 +386,13 @@ class Plugin(indigo.PluginBase):
 				if state!="homeState.Home": 
 					if state!="homeState.Away":
 						if state!="homeState.Unknown":
-							xList.append((state,state+"   ; currentV: "+unicode(dev.states[state]) ))
+							xList.append((state,state+"   ; currentV: "+str(dev.states[state]) ))
 		return xList	
 	
 	def filterAllVariables(self, filter, valuesDict, typeId, targetId):
 		vList =[]
 		for var in indigo.variables:
-			vList.append(( unicode(var.id),var.name))
+			vList.append(( str(var.id),var.name))
 		return vList 
 			
 	def buttonConfirmNewValueFV(self, valuesDict, typeId, devId): 
@@ -530,7 +530,7 @@ class Plugin(indigo.PluginBase):
 		xList =[]
 		for dev in indigo.devices.iter(filter="com.whmoorejr.my-people"):
 			if dev.name != "Now Showing":  
-				xList.append(( unicode(dev.id),dev.name))
+				xList.append(( str(dev.id),dev.name))
 		return xList
 		
 		
