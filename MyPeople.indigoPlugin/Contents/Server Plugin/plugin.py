@@ -355,7 +355,7 @@ class Plugin(indigo.PluginBase):
 		sourceVariable = indigo.variables[int(sourceVarID)]
 		sourceVariableName = sourceVariable.name
 		thisPersonDev = indigo.devices[int(requestedDev)]
-		thisPersonName = thisPersonDev.name
+		thisDevName = thisPersonDev.name
 		thisPersonDev.updateStateOnServer(key=requestedState, value=subNewValue)
 		self.logger.debug(u"The Device -"+thisDevName+":"+requestedState+"- value set to: -" + subNewValue + "- From Variable: -" +sourceVariableName+ ":"+sourceVarID+"-")
 		
